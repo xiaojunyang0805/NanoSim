@@ -112,7 +112,6 @@ NanoSim/
 ├── README.md                 # This file
 ├── LICENSE                   # AGPL-3.0
 ├── CONTRIBUTING.md           # Contribution guidelines
-├── Motivation.md             # Project vision and motivation
 ├── requirements.txt          # Python dependencies
 ├── requirements-dev.txt      # Development dependencies
 ├── setup.py                  # Package installation
@@ -225,7 +224,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
 ## 📖 Documentation
 
-- [Project Motivation](Motivation.md) - Vision and goals
+- [Project Overview & Vision](https://nanosim.seenano.nl) - Visit our landing page
+- [Project Motivation](docs/motivation.md) - Detailed vision and technical approach
 - [Installation Guide](docs/installation.md) *(Coming soon)*
 - [Architecture Deep Dive](docs/architecture.md) *(Coming soon)*
 - [User Guide](docs/user-guide.md) *(Coming soon)*
