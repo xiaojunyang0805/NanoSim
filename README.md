@@ -68,23 +68,20 @@ nanosim --version
 
 ### Multi-Scale Integration
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    NanoSim Platform                      │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐ │
-│  │   MACRO      │  │    MESO      │  │    MICRO     │ │
-│  │   SCALE      │─▶│    SCALE     │─▶│    SCALE     │ │
-│  └──────────────┘  └──────────────┘  └──────────────┘ │
-│                                                          │
-│  • Blood flow     • NP-cell        • Ligand-receptor   │
-│  • Transport      • Membrane       • Binding affinity  │
-│  • Distribution   • Interaction    • Molecular docking │
-│                                                          │
-│  [OpenFOAM/CFD]   [GROMACS/MD]     [AutoDock Vina]     │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    subgraph NanoSim["NanoSim Platform"]
+        A[MACRO SCALE<br/>Blood flow<br/>Transport<br/>Distribution<br/><br/>OpenFOAM/CFD]
+        B[MESO SCALE<br/>NP-cell<br/>Membrane<br/>Interaction<br/><br/>GROMACS/MD]
+        C[MICRO SCALE<br/>Ligand-receptor<br/>Binding affinity<br/>Molecular docking<br/><br/>AutoDock Vina]
+
+        A -->|Bridge| B
+        B -->|Bridge| C
+    end
+
+    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:2px
 ```
 
 ### Technology Stack

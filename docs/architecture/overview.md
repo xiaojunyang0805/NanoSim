@@ -11,32 +11,47 @@ NanoSim is designed as a multi-scale simulation platform that bridges three dist
 
 ## System Architecture
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    NanoSim Platform                      │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│  ┌────────────┐  ┌────────────┐  ┌────────────┐       │
-│  │   Macro    │  │    Meso    │  │   Micro    │       │
-│  │  OpenFOAM  │  │  GROMACS   │  │  AutoDock  │       │
-│  │   (CFD)    │  │    (MD)    │  │   (Dock)   │       │
-│  └────────────┘  └────────────┘  └────────────┘       │
-│        │               │               │                │
-│        └───────┬───────┴───────┬───────┘                │
-│                │               │                        │
-│         ┌──────▼──────┐ ┌──────▼──────┐               │
-│         │ Macro→Meso  │ │ Meso→Micro  │               │
-│         │   Bridge    │ │   Bridge    │               │
-│         └─────────────┘ └─────────────┘               │
-│                                                          │
-│  ┌──────────────────────────────────────────────────┐  │
-│  │            Workflow Orchestrator                  │  │
-│  └──────────────────────────────────────────────────┘  │
-│                                                          │
-│  ┌──────────────────────────────────────────────────┐  │
-│  │         CLI / API / Configuration                 │  │
-│  └──────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Interface["User Interface Layer"]
+        CLI[CLI Commands]
+        API[REST API]
+        Config[YAML Configuration]
+    end
+
+    subgraph Orchestrator["Workflow Orchestrator"]
+        Parser[Config Parser]
+        Validator[Validator]
+        Executor[Execution Engine]
+        Aggregator[Result Aggregator]
+    end
+
+    subgraph Engines["Simulation Engines"]
+        direction LR
+        Macro[Macro Scale<br/>OpenFOAM<br/>CFD]
+        Meso[Meso Scale<br/>GROMACS<br/>MD]
+        Micro[Micro Scale<br/>AutoDock Vina<br/>Docking]
+    end
+
+    subgraph Bridges["Scale Bridges"]
+        B1[Macro→Meso<br/>Bridge]
+        B2[Meso→Micro<br/>Bridge]
+    end
+
+    Interface --> Orchestrator
+    Orchestrator --> Macro
+    Macro --> B1
+    B1 --> Meso
+    Meso --> B2
+    B2 --> Micro
+    Micro --> Aggregator
+
+    style Macro fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    style Meso fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Micro fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style B1 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style B2 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style Orchestrator fill:#fce4ec,stroke:#c2185b,stroke-width:2px
 ```
 
 ## Core Components
@@ -88,38 +103,26 @@ Manages the execution flow:
 
 ## Data Flow
 
-```
-User Config (YAML)
-    │
-    ▼
-┌────────────────┐
-│ Configuration  │
-│   Validation   │
-└────────┬───────┘
-         │
-         ▼
-┌────────────────┐     ┌─────────────┐
-│ Macro Scale    │────▶│ Macro→Meso  │
-│ (OpenFOAM)     │     │   Bridge    │
-└────────────────┘     └──────┬──────┘
-                              │
-                              ▼
-                    ┌────────────────┐     ┌─────────────┐
-                    │ Meso Scale     │────▶│ Meso→Micro  │
-                    │ (GROMACS)      │     │   Bridge    │
-                    └────────────────┘     └──────┬──────┘
-                                                  │
-                                                  ▼
-                                        ┌────────────────┐
-                                        │ Micro Scale    │
-                                        │ (AutoDock)     │
-                                        └────────┬───────┘
-                                                 │
-                                                 ▼
-                                        ┌────────────────┐
-                                        │ Result         │
-                                        │ Aggregation    │
-                                        └────────────────┘
+```mermaid
+flowchart TD
+    Start[User Config<br/>YAML] --> Validate[Configuration<br/>Validation]
+    Validate --> Macro[Macro Scale<br/>OpenFOAM<br/>CFD Simulation]
+    Macro --> |"Velocity fields<br/>Concentration"| Bridge1[Macro→Meso<br/>Bridge]
+    Bridge1 --> |"Initial positions<br/>Velocities"| Meso[Meso Scale<br/>GROMACS<br/>MD Simulation]
+    Meso --> |"Trajectories<br/>Conformations"| Bridge2[Meso→Micro<br/>Bridge]
+    Bridge2 --> |"Binding sites<br/>Structures"| Micro[Micro Scale<br/>AutoDock Vina<br/>Docking]
+    Micro --> Results[Result<br/>Aggregation]
+    Results --> Output[Final Output<br/>JSON/CSV/HDF5]
+
+    style Start fill:#e3f2fd,stroke:#1976d2
+    style Validate fill:#fff9c4,stroke:#f57f17
+    style Macro fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
+    style Meso fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Micro fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Bridge1 fill:#e8f5e9,stroke:#388e3c
+    style Bridge2 fill:#e8f5e9,stroke:#388e3c
+    style Results fill:#fce4ec,stroke:#c2185b
+    style Output fill:#e0f2f1,stroke:#00695c
 ```
 
 ## Technology Stack
