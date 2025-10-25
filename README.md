@@ -68,18 +68,26 @@ nanosim --version
 
 ### Multi-Scale Integration
 
+<div align="left">
+
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px'}}}%%
 flowchart LR
-    A["<b>MACRO SCALE</b><br/>Blood flow • Transport • Distribution<br/><i>OpenFOAM/CFD</i>"]
-    B["<b>MESO SCALE</b><br/>NP-cell • Membrane • Interaction<br/><i>GROMACS/MD</i>"]
-    C["<b>MICRO SCALE</b><br/>Ligand-receptor • Binding affinity • Docking<br/><i>AutoDock Vina</i>"]
+    A["&nbsp;&nbsp;&nbsp;&nbsp;<b>MACRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Blood flow • Transport<br/>Distribution<br/><br/><i>OpenFOAM / CFD</i>&nbsp;&nbsp;&nbsp;&nbsp;"]
+    B["&nbsp;&nbsp;&nbsp;&nbsp;<b>MESO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>NP-cell • Membrane<br/>Interaction<br/><br/><i>GROMACS / MD</i>&nbsp;&nbsp;&nbsp;&nbsp;"]
+    C["&nbsp;&nbsp;&nbsp;&nbsp;<b>MICRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Ligand-receptor • Binding<br/>Molecular docking<br/><br/><i>AutoDock Vina</i>&nbsp;&nbsp;&nbsp;&nbsp;"]
 
-    A -->|Scale Bridge| B -->|Scale Bridge| C
+    A -->|"&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;"| B
+    B -->|"&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;"| C
 
-    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:3px
-    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
-    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:3px,padding:20px
+    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,padding:20px
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px,padding:20px
 ```
+
+</div>
+
+&nbsp;
 
 ### Technology Stack
 
