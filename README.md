@@ -68,26 +68,22 @@ nanosim --version
 
 ### Multi-Scale Integration
 
-<div align="left">
-
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'18px'}}}%%
 flowchart LR
-    A["&nbsp;&nbsp;&nbsp;&nbsp;<b>MACRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Blood flow • Transport<br/>Distribution<br/><br/><i>OpenFOAM / CFD</i>&nbsp;&nbsp;&nbsp;&nbsp;"]
-    B["&nbsp;&nbsp;&nbsp;&nbsp;<b>MESO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>NP-cell • Membrane<br/>Interaction<br/><br/><i>GROMACS / MD</i>&nbsp;&nbsp;&nbsp;&nbsp;"]
-    C["&nbsp;&nbsp;&nbsp;&nbsp;<b>MICRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Ligand-receptor • Binding<br/>Molecular docking<br/><br/><i>AutoDock Vina</i>&nbsp;&nbsp;&nbsp;&nbsp;"]
+    A["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MACRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Blood flow<br/>Transport<br/>Distribution<br/><br/><i>OpenFOAM / CFD</i><br/>&nbsp;"]
+    B["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MESO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>NP-cell<br/>Membrane<br/>Interaction<br/><br/><i>GROMACS / MD</i><br/>&nbsp;"]
+    C["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MICRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Ligand-receptor<br/>Binding affinity<br/>Molecular docking<br/><br/><i>AutoDock Vina</i><br/>&nbsp;"]
 
-    A -->|"&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;"| B
-    B -->|"&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;"| C
+    A -->|"&nbsp;&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;&nbsp;"| B
+    B -->|"&nbsp;&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;&nbsp;"| C
 
-    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:3px,padding:20px
-    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,padding:20px
-    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px,padding:20px
+    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:4px
+    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:4px
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:4px
 ```
 
-</div>
-
-&nbsp;
+<br/>
 
 ### Technology Stack
 
