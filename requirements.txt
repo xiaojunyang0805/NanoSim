@@ -1,0 +1,19 @@
+# Core dependencies
+numpy>=1.24.0
+pyyaml>=6.0
+
+# Web framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# CLI
+click>=8.1.0
+
+# Async support
+httpx>=0.25.0
+
+# Data handling
+pandas>=2.1.0
+
+# Logging
+python-json-logger>=2.0.0

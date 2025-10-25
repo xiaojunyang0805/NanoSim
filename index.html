@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NanoSim - Open-source multi-scale nanomedicine simulation platform integrating OpenFOAM, GROMACS, and AutoDock Vina">
+    <meta name="keywords" content="nanomedicine, simulation, drug delivery, multi-scale, OpenFOAM, GROMACS, AutoDock, computational chemistry">
+    <meta name="author" content="NanoSim Project">
+
+    <title>NanoSim - Multi-Scale Nanomedicine Simulation Platform</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics - Replace with your tracking ID -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🧬</span>
+                <span class="brand-name">NanoSim</span>
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="https://github.com/xiaojunyang0805/NanoSim" target="_blank">GitHub</a>
+                <a href="#signup" class="cta-button">Join Beta</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Multi-Scale Nanomedicine Simulation Made Simple</h1>
+                <p class="hero-subtitle">
+                    Open-source platform bridging macro, meso, and micro scales for drug delivery research
+                </p>
+                <div class="hero-badges">
+                    <span class="badge">OpenFOAM</span>
+                    <span class="badge">GROMACS</span>
+                    <span class="badge">AutoDock Vina</span>
+                </div>
+                <div class="hero-cta">
+                    <a href="#signup" class="button button-primary">Get Early Access</a>
+                    <a href="https://github.com/xiaojunyang0805/NanoSim" class="button button-secondary" target="_blank">
+                        View on GitHub →
+                    </a>
+                </div>
+            </div>
+            <div class="hero-diagram">
+                <div class="scale-box macro">
+                    <h3>Macro Scale</h3>
+                    <p>Blood flow & transport</p>
+                    <span class="scale-range">μm - mm</span>
+                </div>
+                <div class="arrow">→</div>
+                <div class="scale-box meso">
+                    <h3>Meso Scale</h3>
+                    <p>NP-cell interaction</p>
+                    <span class="scale-range">nm - μm</span>
+                </div>
+                <div class="arrow">→</div>
+                <div class="scale-box micro">
+                    <h3>Micro Scale</h3>
+                    <p>Molecular binding</p>
+                    <span class="scale-range">Å - nm</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section id="about" class="section problem-section">
+        <div class="container">
+            <h2 class="section-title">The Challenge</h2>
+            <p class="section-intro">
+                Nanomedicine researchers currently face fragmented workflows across multiple scales
+            </p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⚠️</div>
+                    <h3>Manual Data Transfer</h3>
+                    <p>Researchers spend weeks manually converting data between incompatible simulation tools</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📈</div>
+                    <h3>Steep Learning Curves</h3>
+                    <p>Each software requires months of training across CFD, MD, and quantum chemistry</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💰</div>
+                    <h3>High Costs</h3>
+                    <p>Commercial licenses cost $10,000+ annually, limiting accessibility for researchers</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🔧</div>
+                    <h3>No Standard Workflow</h3>
+                    <p>Every lab builds custom scripts, leading to poor reproducibility</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="section solution-section">
+        <div class="container">
+            <h2 class="section-title">Our Solution</h2>
+            <p class="section-intro">
+                A unified, open-source platform that automates multi-scale simulation workflows
+            </p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">🔗</div>
+                    <h3>Unified Workflow</h3>
+                    <p>Single interface to configure and execute simulations across all three scales</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🤖</div>
+                    <h3>AI-Powered Assistance</h3>
+                    <p>Intelligent parameter recommendations based on literature and nanoparticle properties</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">☁️</div>
+                    <h3>Cloud-Native</h3>
+                    <p>Run simulations in the cloud - no complex local installation required</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🌍</div>
+                    <h3>Open Source</h3>
+                    <p>Free for research and education, with transparent, community-driven development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section features-section">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-number">01</div>
+                    <div class="feature-content">
+                        <h3>Automated Scale Bridging</h3>
+                        <p>Seamless data conversion from continuum (CFD) to discrete (MD) to atomic (docking) representations with built-in validation</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">02</div>
+                    <div class="feature-content">
+                        <h3>Docker-Based Architecture</h3>
+                        <p>Pre-configured containers for OpenFOAM, GROMACS, and AutoDock Vina ensure reproducibility across environments</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">03</div>
+                    <div class="feature-content">
+                        <h3>Interactive Visualization</h3>
+                        <p>3D visualization of simulation results with real-time monitoring and progress tracking</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">04</div>
+                    <div class="feature-content">
+                        <h3>Workflow Library</h3>
+                        <p>Pre-built workflows for common drug delivery scenarios to accelerate your research</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="section use-cases-section">
+        <div class="container">
+            <h2 class="section-title">Example Use Cases</h2>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <h3>🎯 Targeted Drug Delivery</h3>
+                    </div>
+                    <p>Simulate liposome transport in blood vessels, nanoparticle accumulation in tumors, and predict ligand-receptor binding affinity</p>
+                    <div class="use-case-example">
+                        <strong>Example:</strong> Doxorubicin-loaded nanoparticles targeting HER2+ breast cancer
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <h3>💉 Vaccine Delivery</h3>
+                    </div>
+                    <p>Model mRNA-lipid nanoparticle distribution, cell membrane penetration, and endosomal escape mechanisms</p>
+                    <div class="use-case-example">
+                        <strong>Example:</strong> mRNA vaccine formulation optimization
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <h3>🧬 Gene Therapy</h3>
+                    </div>
+                    <p>Simulate viral vector transport in tissues, cell entry pathways, and DNA-protein binding interactions</p>
+                    <div class="use-case-example">
+                        <strong>Example:</strong> AAV vector delivery to target organs
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="section roadmap-section">
+        <div class="container">
+            <h2 class="section-title">Development Roadmap</h2>
+            <div class="timeline">
+                <div class="timeline-item active">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 1: Proof of Concept</h3>
+                        <span class="timeline-date">Current - Month 6</span>
+                        <ul>
+                            <li>Docker containerization ✓</li>
+                            <li>Python API wrappers</li>
+                            <li>Basic CLI interface</li>
+                            <li>OpenFOAM → GROMACS integration</li>
+                            <li>Example workflow: liposome targeting</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 2: MVP Development</h3>
+                        <span class="timeline-date">Months 7-12</span>
+                        <ul>
+                            <li>Web-based interface</li>
+                            <li>Cloud job execution</li>
+                            <li>All three scales integrated</li>
+                            <li>Visualization dashboard</li>
+                            <li>Beta testing with 10+ users</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Phase 3: AI Integration</h3>
+                        <span class="timeline-date">Months 13-18</span>
+                        <ul>
+                            <li>AI parameter recommendations</li>
+                            <li>Natural language interface</li>
+                            <li>Automated result interpretation</li>
+                            <li>Interactive learning modules</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section id="signup" class="section signup-section">
+        <div class="container">
+            <div class="signup-box">
+                <h2>Join the Beta Program</h2>
+                <p>Be among the first to access NanoSim and help shape the future of nanomedicine simulation</p>
+
+                <!-- Replace this form action with your email service endpoint -->
+                <!-- Options: Buttondown, Mailchimp, or custom backend -->
+                <form id="signup-form" class="signup-form" action="https://buttondown.email/api/emails/embed-subscribe/nanosim" method="post" target="_blank">
+                    <div class="form-group">
+                        <input
+                            type="email"
+                            name="email"
+                            id="email-input"
+                            placeholder="your.email@university.edu"
+                            required
+                            class="form-input"
+                        >
+                        <button type="submit" class="button button-primary">Get Early Access</button>
+                    </div>
+                    <p class="form-note">
+                        We'll send you updates on development progress and beta testing opportunities.
+                        No spam, unsubscribe anytime.
+                    </p>
+                </form>
+
+                <div class="signup-benefits">
+                    <h3>What you'll get:</h3>
+                    <ul>
+                        <li>✓ Early access to beta releases</li>
+                        <li>✓ Bi-weekly development updates</li>
+                        <li>✓ Opportunity to influence features</li>
+                        <li>✓ Direct support from the development team</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>NanoSim</h3>
+                    <p>Open-source multi-scale nanomedicine simulation platform</p>
+                    <div class="social-links">
+                        <a href="https://github.com/xiaojunyang0805/NanoSim" target="_blank" aria-label="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Project</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#roadmap">Roadmap</a></li>
+                        <li><a href="https://github.com/xiaojunyang0805/NanoSim" target="_blank">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/xiaojunyang0805/NanoSim/blob/main/README.md" target="_blank">Documentation</a></li>
+                        <li><a href="https://github.com/xiaojunyang0805/NanoSim/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a></li>
+                        <li><a href="https://github.com/xiaojunyang0805/NanoSim/issues" target="_blank">Issues</a></li>
+                        <li><a href="https://github.com/xiaojunyang0805/NanoSim/blob/main/LICENSE" target="_blank">License</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:support@seenano.nl">support@seenano.nl</a></li>
+                        <li><a href="https://github.com/xiaojunyang0805/NanoSim/discussions" target="_blank">Discussions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NanoSim Project. Licensed under AGPL-3.0</p>
+                <p>Building the future of nanomedicine simulation, one scale at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
