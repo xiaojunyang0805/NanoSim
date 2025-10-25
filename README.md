@@ -69,19 +69,16 @@ nanosim --version
 ### Multi-Scale Integration
 
 ```mermaid
-graph LR
-    subgraph NanoSim["NanoSim Platform"]
-        A[MACRO SCALE<br/>Blood flow<br/>Transport<br/>Distribution<br/><br/>OpenFOAM/CFD]
-        B[MESO SCALE<br/>NP-cell<br/>Membrane<br/>Interaction<br/><br/>GROMACS/MD]
-        C[MICRO SCALE<br/>Ligand-receptor<br/>Binding affinity<br/>Molecular docking<br/><br/>AutoDock Vina]
+flowchart LR
+    A["<b>MACRO SCALE</b><br/>Blood flow • Transport • Distribution<br/><i>OpenFOAM/CFD</i>"]
+    B["<b>MESO SCALE</b><br/>NP-cell • Membrane • Interaction<br/><i>GROMACS/MD</i>"]
+    C["<b>MICRO SCALE</b><br/>Ligand-receptor • Binding affinity • Docking<br/><i>AutoDock Vina</i>"]
 
-        A -->|Bridge| B
-        B -->|Bridge| C
-    end
+    A -->|Scale Bridge| B -->|Scale Bridge| C
 
-    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:2px
-    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style C fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:3px
+    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px
 ```
 
 ### Technology Stack
