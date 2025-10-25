@@ -1,9 +1,9 @@
 # Phase 1 Work Plan: Multi-Scale Nanomedicine Simulation Platform
 ## Project Codename: NanoSim (tentative)
 
-**Duration:** 3-6 months  
-**Focus:** Proof of Concept + Community Building  
-**Team:** Solo founder (expandable)  
+**Duration:** 3-6 months
+**Focus:** Proof of Concept + Community Building
+**Team:** Solo founder (expandable)
 **Budget:** Bootstrap / Open-source focused
 
 ---
@@ -140,7 +140,7 @@ Design modular, scalable platform architecture
 
 - [ ] **Module Specifications**
   - OpenFOAM Interface Module
-  - GROMACS Interface Module  
+  - GROMACS Interface Module
   - AutoDock Vina Interface Module
   - Scale Bridge Module (data conversion)
   - Job Orchestration Module
@@ -205,13 +205,13 @@ Build minimal viable integration of two tools (OpenFOAM → GROMACS)
   class OpenFOAMSimulation:
       def __init__(self, config):
           # Initialize with geometry, parameters
-          
+
       def setup_case(self):
           # Generate mesh, boundary conditions
-          
+
       def run(self):
           # Execute OpenFOAM solver
-          
+
       def extract_results(self):
           # Parse output, return concentration field
   ```
@@ -221,13 +221,13 @@ Build minimal viable integration of two tools (OpenFOAM → GROMACS)
   class GROMACSSimulation:
       def __init__(self, config):
           # Initialize system
-          
+
       def prepare_input(self, macro_results):
           # Generate topology, coordinates
-          
+
       def run(self):
           # Execute MD simulation
-          
+
       def analyze(self):
           # Extract binding events, distances
   ```
@@ -247,7 +247,7 @@ Build minimal viable integration of two tools (OpenFOAM → GROMACS)
           # Convert continuum to particles
           # Statistical sampling
           # Return particle positions
-          
+
   class MesoToMicroConverter:
       def identify_binding_events(self, trajectory):
           # Analyze MD trajectory
@@ -260,7 +260,7 @@ Build minimal viable integration of two tools (OpenFOAM → GROMACS)
   class SimulationPipeline:
       def __init__(self, workflow_config):
           self.stages = [macro, meso, micro]
-          
+
       def execute(self):
           results = {}
           for stage in self.stages:
@@ -379,7 +379,7 @@ Beta test with real users, collect feedback, improve stability
 
 #### Reddit Content Calendar
 
-**Week 3:** 
+**Week 3:**
 - [ ] Post: "Understanding Multi-Scale Simulation in Drug Delivery"
   - Explain macro/meso/micro scales
   - Why each is needed
@@ -628,7 +628,7 @@ Beta test with real users, collect feedback, improve stability
 
 ### Communication Channels
 - GitHub Discussions: Technical questions
-- Email: Updates and announcements  
+- Email: Updates and announcements
 - Reddit: Community engagement
 - Discord (future): Real-time chat
 
@@ -680,9 +680,9 @@ nanosim/
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** October 25, 2025  
-**Status:** Active Development  
+**Document Version:** 1.0
+**Last Updated:** October 25, 2025
+**Status:** Active Development
 **License:** This work plan is part of the NanoSim open-source project
 
 ---

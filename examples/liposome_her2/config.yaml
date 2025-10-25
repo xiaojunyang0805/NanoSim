@@ -1,0 +1,186 @@
+# NanoSim Workflow Configuration
+# Example: 100nm Liposome Targeting HER2 Receptors
+
+project:
+  name: "liposome_her2_targeting"
+  description: "Multi-scale simulation of PEGylated liposome targeting HER2 receptors in breast cancer"
+  author: "NanoSim Team"
+  date: "2025-01-27"
+
+# Define which scales to simulate
+scales:
+  - macro
+  - meso
+  - micro
+
+# Macro scale: Continuum-level CFD simulation
+macro:
+  engine: openfoam
+  description: "Blood flow and nanoparticle transport in capillary"
+
+  parameters:
+    # Particle properties
+    particle_diameter: 100e-9  # 100 nm liposome
+    particle_density: 1050  # kg/m³ (slightly denser than water)
+
+    # Flow conditions
+    flow_velocity: 0.001  # m/s (typical capillary flow)
+    blood_viscosity: 0.004  # Pa·s (whole blood viscosity)
+
+    # Simulation settings
+    simulation_time: 10  # seconds
+    time_step: 0.001  # seconds
+    geometry: "capillary_vessel"
+    vessel_diameter: 8e-6  # 8 μm capillary
+
+  outputs:
+    - velocity_field
+    - particle_trajectories
+    - concentration_gradient
+    - wall_shear_stress
+
+# Meso scale: Molecular dynamics simulation
+meso:
+  engine: gromacs
+  description: "Liposome-cell membrane interaction and antibody dynamics"
+
+  parameters:
+    # System composition
+    lipid_type: "DPPC"  # Dipalmitoylphosphatidylcholine
+    num_lipids: 2000  # Liposome composition
+    peg_chains: 100  # PEGylation density
+    targeting_antibodies: 20  # Anti-HER2 antibodies
+
+    # Simulation conditions
+    temperature: 310  # K (37°C, physiological)
+    pressure: 1.0  # bar
+    ionic_strength: 0.15  # M (physiological)
+
+    # MD settings
+    simulation_time: 100e-9  # 100 ns
+    time_step: 2e-15  # 2 fs
+    force_field: "charmm36"
+    water_model: "tip3p"
+
+    # Integration
+    integrator: "md"
+    constraints: "h-bonds"
+    pbc: "xyz"  # Periodic boundary conditions
+
+  outputs:
+    - trajectory
+    - energies
+    - lipid_order_parameters
+    - antibody_conformations
+    - binding_site_coordinates
+
+# Micro scale: Molecular docking simulation
+micro:
+  engine: autodock_vina
+  description: "Antibody-HER2 binding affinity prediction"
+
+  parameters:
+    # Input structures
+    receptor: "HER2_extracellular_domain.pdbqt"
+    ligand: "trastuzumab_fab.pdbqt"
+
+    # Search space (Å)
+    center_x: 0.0
+    center_y: 0.0
+    center_z: 0.0
+    size_x: 25.0
+    size_y: 25.0
+    size_z: 25.0
+
+    # Docking settings
+    exhaustiveness: 32  # Increased for more thorough search
+    num_modes: 20  # Number of binding modes to generate
+    energy_range: 3  # kcal/mol
+
+  outputs:
+    - docked_poses
+    - binding_affinities
+    - interaction_maps
+    - best_pose_structure
+
+# Output configuration
+output:
+  # Base output directory (will be created if doesn't exist)
+  base_dir: "./output/liposome_her2"
+
+  # Output formats
+  formats:
+    - json  # Structured data
+    - csv   # Tabular data
+    - hdf5  # Large numerical arrays
+    - vtk   # Visualization
+
+  # Visualization settings
+  visualization:
+    enabled: true
+    generate_plots: true
+    plot_types:
+      - trajectory_3d
+      - energy_vs_time
+      - binding_affinity_heatmap
+      - concentration_contour
+
+  # Data retention
+  save_intermediate: true  # Keep intermediate results
+  save_trajectories: true  # Keep full trajectories (can be large!)
+  compress: true  # Compress large files
+
+# Scale bridging configuration
+bridges:
+  macro_to_meso:
+    # How to convert CFD output to MD input
+    method: "nearest_neighbor"
+    interpolation: "linear"
+    mapping:
+      velocity_field: initial_velocities
+      concentration_gradient: particle_positions
+
+  meso_to_micro:
+    # How to convert MD output to docking input
+    method: "clustering"
+    num_clusters: 10  # Extract 10 representative conformations
+    metric: "rmsd"
+    mapping:
+      antibody_conformations: ligand_ensemble
+      binding_site_coordinates: search_center
+
+# Resource allocation
+resources:
+  # Container settings (if using Docker)
+  use_docker: false  # Set to true to use containerized engines
+  docker_images:
+    openfoam: "openfoam/openfoam11-paraview510"
+    gromacs: "gromacs/gromacs:2024"
+    autodock: "ccsb/autodock-vina:1.2.5"
+
+  # Computational resources
+  cpu_cores: 8
+  memory_gb: 16
+  gpu_enabled: false  # Set to true if GROMACS GPU acceleration available
+
+# Validation and quality control
+validation:
+  # Energy minimization thresholds
+  max_force_macro: 1000  # kJ/mol/nm
+  max_force_meso: 1000  # kJ/mol/nm
+
+  # Physical reasonableness checks
+  check_overlap: true
+  check_energies: true
+  check_conservation: true
+
+# Workflow metadata
+metadata:
+  version: "0.1.0"
+  created_with: "NanoSim"
+  reproducibility:
+    random_seed: 42
+    software_versions:
+      openfoam: "11"
+      gromacs: "2024"
+      autodock_vina: "1.2.5"

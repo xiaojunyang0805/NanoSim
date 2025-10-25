@@ -1,0 +1,78 @@
+site_name: NanoSim Documentation
+site_description: Multi-scale nanomedicine simulation platform
+site_author: Xiaojun Yang
+site_url: https://nanosim.seenano.nl
+
+repo_name: xiaojunyang0805/NanoSim
+repo_url: https://github.com/xiaojunyang0805/NanoSim
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: installation.md
+      - Quick Start: guide/quickstart.md
+      - Configuration: guide/configuration.md
+  - Architecture:
+      - Overview: architecture/overview.md
+      - Multi-scale Approach: architecture/multiscale.md
+      - Scale Bridging: architecture/bridging.md
+  - User Guide:
+      - Running Simulations: guide/running.md
+      - OpenFOAM Integration: guide/openfoam.md
+      - GROMACS Integration: guide/gromacs.md
+      - AutoDock Vina Integration: guide/autodock.md
+  - Examples:
+      - Liposome-HER2 Targeting: examples/liposome_her2.md
+  - API Reference:
+      - Core: api/core.md
+      - Engines: api/engines.md
+      - Bridges: api/bridges.md
+      - Utilities: api/utils.md
+  - Development:
+      - Contributing: contributing.md
+      - Architecture Decisions: development/adr.md

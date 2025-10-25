@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(nslookup:*)",
+      "Bash(python -m venv:*)",
+      "Bash(venv/Scripts/pip install:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
