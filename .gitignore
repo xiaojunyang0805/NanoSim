@@ -1,3 +1,6 @@
+# Private development documents (not for public repo)
+DevDoc/
+
 # Python
 __pycache__/
 *.py[cod]
