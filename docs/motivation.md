@@ -320,42 +320,7 @@ flowchart TB
 - Open-core model: free for research, paid for enterprise features
 - SaaS platform: cloud hosting and compute
 - Professional services: consulting, custom development, training
-- Academic grants: NIH, NSF funding for development
-
----
-
-## Next Steps
-
-### Immediate Actions (Month 1)
-
-1. **Technical Validation**
-   - Execute complete manual workflow (OpenFOAM→GROMACS→Vina)
-   - Document bottlenecks, data formats, and conversion requirements
-   - Establish baseline computational requirements
-
-2. **Community Building**
-   - Launch landing page with email signup
-   - Begin regular Reddit engagement (educational content)
-   - Identify potential beta testers and collaborators
-
-3. **Infrastructure Setup**
-   - Initialize GitHub repository
-   - Create Docker containers for each simulation tool
-   - Design data schema and API specifications
-
-4. **Funding Preparation**
-   - Draft grant applications (NIH SBIR, NSF)
-   - Create pitch deck for potential advisors/investors
-   - Identify academic partnership opportunities
-
-### Success Metrics (6 Months)
-
-- [ ] Working proof-of-concept with all three scales integrated
-- [ ] 100+ GitHub stars
-- [ ] 200+ email subscribers
-- [ ] 5+ beta testers recruited
-- [ ] $50K+ in grant funding secured
-- [ ] 1-2 academic partnerships established
+- Research funding: EU Horizon programs via academic partnerships, national innovation grants (NWO, RVO)
 
 ---
 
@@ -385,6 +350,28 @@ By lowering barriers to entry, standardizing workflows, and accelerating researc
 
 ---
 
+## 📄 License
+
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+
+**What this means:**
+- ✅ Free to use for research, education, and commercial purposes
+- ✅ Can modify and redistribute
+- ✅ Must share modifications if you distribute or host as a service
+- ✅ Must keep the same license
+
+See [LICENSE](../LICENSE) for full details.
+
+---
+
+## 📬 Contact
+
+**Project Lead:** Xiaojun Yang
+**Email:** support@seenano.nl
+**GitHub:** [@xiaojunyang0805](https://github.com/xiaojunyang0805)
+**Website:** [nanosim.seenano.nl](https://nanosim.seenano.nl)
+
+---
+
 **Document Maintained By:** NanoSim Project Team
-**Contact:** [Project Lead Email]
-**License:** This document is part of the NanoSim open-source initiative
+**Last Updated:** October 25, 2025
