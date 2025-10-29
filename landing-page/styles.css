@@ -155,30 +155,13 @@ p {
    Hero Section
    =========================== */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Layer transparent particle image over gradient using multiple backgrounds */
+    background-image: url('images/hero/particle-flow-background.webp?v=3'), linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: cover, cover;
+    background-position: center, center;
     color: white;
     padding: var(--spacing-xxl) 0;
     text-align: center;
-    position: relative;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('images/hero/particle-flow-background.webp?v=3');
-    background-size: cover;
-    background-position: center;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.hero .container {
-    position: relative;
-    z-index: 1;
 }
 
 .hero-content {
