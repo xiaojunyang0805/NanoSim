@@ -324,60 +324,76 @@ def generate_workflow_diagram():
 
 
 def generate_particle_flow():
-    """Generate particle flow visualization for hero background."""
+    """Generate particle flow visualization for hero background with transparent center."""
     print("Generating particle flow background...")
 
     fig, ax = plt.subplots(figsize=(16, 9))
     ax.set_xlim(0, 16)
     ax.set_ylim(0, 9)
+    ax.set_facecolor("none")  # Transparent background
 
-    # Create blue-purple gradient background (matching hero section)
-    from matplotlib.colors import LinearSegmentedColormap
-
-    # Define gradient from blue-purple (#667eea) to purple (#764ba2)
-    ax.imshow(
-        [[0, 1]],
-        extent=[0, 16, 0, 9],
-        aspect="auto",
-        cmap=LinearSegmentedColormap.from_list("hero", ["#667eea", "#764ba2"]),
-        alpha=1.0,
-        zorder=0,
-    )
-
-    # Generate flowing particles with gradient colors
+    # Generate flowing particles/bubbles on LEFT and RIGHT sides only
+    # Avoid center area (x: 5-11) where text will be
     np.random.seed(42)
-    n_particles = 100
+    n_particles_per_side = 30
 
-    for _ in range(n_particles):
-        x = np.random.uniform(0, 16)
+    # LEFT side particles (x: 0-4)
+    for _ in range(n_particles_per_side):
+        x = np.random.uniform(0, 4)
         y = np.random.uniform(0, 9)
+        size = np.random.uniform(0.15, 0.6)
 
-        # Color gradient from blue to purple to pink
+        # Mix of blue, purple, pink with low alpha for subtlety
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
-        alpha = np.random.uniform(0.05, 0.15)
+        alpha = np.random.uniform(0.15, 0.35)
 
-        circle = Circle((x, y), np.random.uniform(0.1, 0.5), color=color_choice, alpha=alpha)
+        circle = Circle((x, y), size, color=color_choice, alpha=alpha, zorder=1)
         ax.add_patch(circle)
 
-    # Add flowing lines
-    for _ in range(20):
-        x_start = np.random.uniform(0, 16)
-        y_start = np.random.uniform(0, 9)
-        x_end = x_start + np.random.uniform(-2, 2)
-        y_end = y_start + np.random.uniform(-1, 1)
+        # Add subtle glow/outline for bubble effect
+        glow = Circle((x, y), size + 0.05, color="white", alpha=0.1, zorder=0)
+        ax.add_patch(glow)
 
-        ax.plot(
-            [x_start, x_end],
-            [y_start, y_end],
-            color=np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO]),
-            alpha=0.1,
-            linewidth=1,
-        )
+    # RIGHT side particles (x: 12-16)
+    for _ in range(n_particles_per_side):
+        x = np.random.uniform(12, 16)
+        y = np.random.uniform(0, 9)
+        size = np.random.uniform(0.15, 0.6)
+
+        color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
+        alpha = np.random.uniform(0.15, 0.35)
+
+        circle = Circle((x, y), size, color=color_choice, alpha=alpha, zorder=1)
+        ax.add_patch(circle)
+
+        # Add glow
+        glow = Circle((x, y), size + 0.05, color="white", alpha=0.1, zorder=0)
+        ax.add_patch(glow)
+
+    # Add a few very subtle particles in the center for transition
+    for _ in range(10):
+        x = np.random.uniform(4.5, 11.5)
+        y = np.random.uniform(0, 9)
+        size = np.random.uniform(0.1, 0.3)
+
+        color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
+        alpha = np.random.uniform(0.05, 0.15)  # Very subtle
+
+        circle = Circle((x, y), size, color=color_choice, alpha=alpha)
+        ax.add_patch(circle)
 
     ax.axis("off")
 
     output_path = os.path.join("hero", "particle-flow-background.png")
-    plt.savefig(output_path, dpi=150, bbox_inches="tight", facecolor="#667eea", edgecolor="none")
+    # Save with transparent background
+    plt.savefig(
+        output_path,
+        dpi=150,
+        bbox_inches="tight",
+        facecolor="none",
+        edgecolor="none",
+        transparent=True,
+    )
     plt.close()
 
     print(f"[OK] Saved: {output_path}")
