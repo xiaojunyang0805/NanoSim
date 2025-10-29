@@ -158,8 +158,9 @@ p {
     /* Layer transparent particle image over gradient using multiple backgrounds */
     /* Lighter gradient: #8b9dff (lighter blue) to #a78bfa (lighter purple) */
     background-image: url('images/hero/particle-flow-background.webp?v=6'), linear-gradient(135deg, #8b9dff 0%, #a78bfa 100%);
-    background-size: cover, cover;
+    background-size: 100% 100%, cover;
     background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
     color: white;
     padding: var(--spacing-xxl) 0;
     text-align: center;
