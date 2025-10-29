@@ -334,15 +334,15 @@ def generate_particle_flow():
     fig.patch.set_alpha(0.0)  # Make figure background fully transparent
 
     # Generate flowing particles/bubbles on LEFT and RIGHT sides only
-    # Avoid center area (x: 5-11) where text will be
+    # Avoid center area (x: 6-10) where text will be - push particles further to edges
     np.random.seed(42)
-    n_particles_per_side = 30
+    n_particles_per_side = 35
 
-    # LEFT side particles (x: 0-4)
+    # LEFT side particles (x: 0-3.5) - closer to left edge
     for _ in range(n_particles_per_side):
-        x = np.random.uniform(0, 4)
+        x = np.random.uniform(0, 3.5)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.2, 0.8)
+        size = np.random.uniform(0.25, 0.9)
 
         # Mix of blue, purple, pink with higher alpha for visibility
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
@@ -355,11 +355,11 @@ def generate_particle_flow():
         glow = Circle((x, y), size + 0.08, color="white", alpha=0.25, zorder=0)
         ax.add_patch(glow)
 
-    # RIGHT side particles (x: 12-16)
+    # RIGHT side particles (x: 12.5-16) - closer to right edge
     for _ in range(n_particles_per_side):
-        x = np.random.uniform(12, 16)
+        x = np.random.uniform(12.5, 16)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.2, 0.8)
+        size = np.random.uniform(0.25, 0.9)
 
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
         alpha = np.random.uniform(0.3, 0.6)
@@ -371,15 +371,24 @@ def generate_particle_flow():
         glow = Circle((x, y), size + 0.08, color="white", alpha=0.25, zorder=0)
         ax.add_patch(glow)
 
-    # Add a few very subtle particles in the center for transition
-    for _ in range(10):
-        x = np.random.uniform(4.5, 11.5)
+    # Add a few very subtle particles in the transition zones only (not center)
+    # Left transition zone (x: 3.5-5.5)
+    for _ in range(5):
+        x = np.random.uniform(3.5, 5.5)
         y = np.random.uniform(0, 9)
         size = np.random.uniform(0.15, 0.35)
-
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
-        alpha = np.random.uniform(0.1, 0.25)  # Slightly more visible
+        alpha = np.random.uniform(0.1, 0.2)
+        circle = Circle((x, y), size, color=color_choice, alpha=alpha)
+        ax.add_patch(circle)
 
+    # Right transition zone (x: 10.5-12.5)
+    for _ in range(5):
+        x = np.random.uniform(10.5, 12.5)
+        y = np.random.uniform(0, 9)
+        size = np.random.uniform(0.15, 0.35)
+        color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
+        alpha = np.random.uniform(0.1, 0.2)
         circle = Circle((x, y), size, color=color_choice, alpha=alpha)
         ax.add_patch(circle)
 
