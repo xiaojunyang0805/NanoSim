@@ -1,5 +1,36 @@
 // Form submission handling
 document.addEventListener('DOMContentLoaded', function() {
+    // Workflow tab switching
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const workflowContents = document.querySelectorAll('.workflow-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetWorkflow = this.getAttribute('data-workflow');
+
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            workflowContents.forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button
+            this.classList.add('active');
+
+            // Show corresponding workflow
+            const targetContent = document.getElementById(`${targetWorkflow}-workflow`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+
+            // Track workflow tab switch in analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'workflow_tab_switch', {
+                    'event_category': 'engagement',
+                    'event_label': targetWorkflow
+                });
+            }
+        });
+    });
+
     const signupForm = document.getElementById('signup-form');
 
     if (signupForm) {
