@@ -72,7 +72,11 @@ class MacroToMesoBridge(ScaleBridge):
 
 
 class MesoToMicroBridge(ScaleBridge):
-    """Bridge from meso (MD) to micro (docking) scale."""
+    """Bridge from meso (MD) to micro (docking) scale.
+
+    Used for MD-first workflows (e.g., membrane interactions before docking).
+    Extracts receptor configurations from MD simulations for subsequent docking.
+    """
 
     def convert(self, input_data: dict[str, Any]) -> dict[str, Any]:
         """Extract binding events from MD trajectory.
@@ -104,3 +108,53 @@ class MesoToMicroBridge(ScaleBridge):
         """
         # TODO: Implement validation
         raise NotImplementedError("MesoToMicroBridge.validate not yet implemented")
+
+
+class MicroToMesoBridge(ScaleBridge):
+    """Bridge from micro (docking) to meso (MD) scale.
+
+    Used for standard drug discovery workflows (docking first, MD validation second).
+    Converts docked poses into MD-ready systems for validation.
+    """
+
+    def convert(self, input_data: dict[str, Any]) -> dict[str, Any]:
+        """Prepare docked poses for MD validation.
+
+        Args:
+            input_data: Dictionary containing:
+                - docking_results: List of docked poses (PDBQT format)
+                - receptor_structure: Receptor PDB file
+                - top_n_poses: Number of diverse poses to select
+                - force_field: Force field for MD (default: 'amber99sb-ildn')
+
+        Returns:
+            Dictionary containing:
+                - md_systems: List of prepared MD systems
+                - topology_files: GROMACS topology files
+                - coordinate_files: Initial coordinate files (.gro)
+                - metadata: Pose IDs, scores, and diversity metrics
+        """
+        # TODO: Implement conversion algorithm
+        # 1. Convert PDBQT → PDB format
+        # 2. Select diverse poses (RMSD clustering)
+        # 3. Combine receptor + ligand for each pose
+        # 4. Generate GROMACS topology files
+        # 5. Prepare solvated systems
+        raise NotImplementedError("MicroToMesoBridge.convert not yet implemented")
+
+    def validate(self, input_data: dict[str, Any], output_data: dict[str, Any]) -> bool:
+        """Validate MD system preparation.
+
+        Args:
+            input_data: Docking results
+            output_data: Prepared MD systems
+
+        Returns:
+            True if systems are valid (no clashes, proper topology, etc.)
+        """
+        # TODO: Implement validation
+        # 1. Check for atomic clashes
+        # 2. Verify topology completeness
+        # 3. Validate box dimensions
+        # 4. Check charge neutrality
+        raise NotImplementedError("MicroToMesoBridge.validate not yet implemented")

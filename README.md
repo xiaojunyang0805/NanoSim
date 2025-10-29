@@ -66,22 +66,58 @@ nanosim --version
 
 ## 🏗️ Architecture
 
-### Multi-Scale Integration
+### Multi-Scale Integration with Bidirectional Workflows
 
+NanoSim supports **adaptive workflow routing** based on your research needs:
+
+#### Standard Drug Discovery Workflow (Docking-First)
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'18px'}}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px'}}}%%
 flowchart LR
-    A["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MACRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Blood flow<br/>Transport<br/>Distribution<br/><br/><i>OpenFOAM / CFD</i><br/>&nbsp;"]
-    B["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MESO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>NP-cell<br/>Membrane<br/>Interaction<br/><br/><i>GROMACS / MD</i><br/>&nbsp;"]
-    C["&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MICRO SCALE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/>Ligand-receptor<br/>Binding affinity<br/>Molecular docking<br/><br/><i>AutoDock Vina</i><br/>&nbsp;"]
+    A["<b>MACRO</b><br/>Blood flow<br/><i>OpenFOAM</i>"]
+    C["<b>MICRO</b><br/>Docking<br/><i>AutoDock Vina</i>"]
+    B["<b>MESO</b><br/>MD Validation<br/><i>GROMACS</i>"]
 
-    A -->|"&nbsp;&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;&nbsp;"| B
-    B -->|"&nbsp;&nbsp;&nbsp;Scale Bridge&nbsp;&nbsp;&nbsp;"| C
+    A -->|"Screen 1000s<br/>of compounds"| C
+    C -->|"Validate top<br/>10-50 poses"| B
 
-    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:4px
-    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:4px
-    style C fill:#fff3e0,stroke:#f57c00,stroke-width:4px
+    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:3px
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
 ```
+**Use when:** Known target, large compound libraries, standard screening
+**Rationale:** Docking is fast ($0.01/compound) → MD is expensive ($10/compound)
+
+#### Membrane Targeting Workflow (MD-First)
+```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'16px'}}}%%
+flowchart LR
+    A["<b>MACRO</b><br/>Transport<br/><i>OpenFOAM</i>"]
+    B1["<b>MESO</b><br/>Membrane MD<br/><i>GROMACS CG</i>"]
+    C["<b>MICRO</b><br/>Docking<br/><i>Vina</i>"]
+    B2["<b>MESO</b><br/>Validation<br/><i>GROMACS AA</i>"]
+
+    A -->|"NP approach"| B1
+    B1 -->|"Identify<br/>binding sites"| C
+    C -->|"Validate<br/>poses"| B2
+
+    style A fill:#e1f5ff,stroke:#0288d1,stroke-width:3px
+    style B1 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    style C fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    style B2 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+```
+**Use when:** Nanoparticle delivery, membrane proteins, cryptic pockets
+**Rationale:** Must understand membrane interactions before docking
+
+### Intelligent Workflow Selection
+
+NanoSim automatically selects the optimal workflow based on:
+- Target type (soluble vs. membrane)
+- Compound library size
+- Computational budget
+- Scientific goals
+
+**This bidirectional capability is our competitive advantage!**
 
 <br/>
 
@@ -128,19 +164,33 @@ NanoSim/
 │   ├── cli.py               # Command-line interface
 │   ├── api.py               # REST API (FastAPI)
 │   │
+│   ├── core/                # Core abstractions
+│   │   ├── simulation.py    # Base simulation classes
+│   │   └── bridge.py        # Base bridge classes
+│   │
 │   ├── engines/             # Simulation engine wrappers
 │   │   ├── openfoam.py      # OpenFOAM interface
 │   │   ├── gromacs.py       # GROMACS interface
 │   │   └── autodock.py      # AutoDock Vina interface
 │   │
-│   ├── bridges/             # Scale conversion modules
-│   │   ├── macro_to_meso.py # Continuum → MD
-│   │   └── meso_to_micro.py # MD → Docking
+│   ├── bridges/             # BIDIRECTIONAL scale conversion
+│   │   ├── macro_to_meso.py # OpenFOAM → GROMACS
+│   │   ├── meso_to_micro.py # GROMACS → Vina (MD-first)
+│   │   └── micro_to_meso.py # Vina → GROMACS (docking-first)
 │   │
-│   ├── orchestrator/        # Workflow management
+│   ├── orchestrator/        # Intelligent workflow management
+│   │   ├── workflow_router.py # Automatic workflow selection
 │   │   ├── pipeline.py      # Job orchestration
 │   │   ├── scheduler.py     # Task scheduling
 │   │   └── monitor.py       # Progress tracking
+│   │
+│   ├── workflows/           # Pre-configured workflows
+│   │   ├── standard_vs.py   # Standard virtual screening
+│   │   └── membrane_targeting.py # Nanoparticle targeting
+│   │
+│   ├── validation/          # Quality control
+│   │   ├── md_stability.py  # MD stability metrics
+│   │   └── pose_validator.py # Docking pose validation
 │   │
 │   └── utils/               # Utilities
 │       ├── validators.py    # Input validation
@@ -171,12 +221,16 @@ NanoSim/
 ### Phase 1: Proof of Concept (Current - Month 6) ⏳
 
 - [x] Manual workflow validation
-- [x] Architecture design
+- [x] Architecture design (including bidirectional workflows)
+- [x] Core abstractions (SimulationEngine, ScaleBridge)
+- [x] Workflow router with intelligent selection
+- [x] Bidirectional bridge interfaces
 - [ ] Docker containerization
 - [ ] Python wrappers for each engine
 - [ ] Basic CLI interface
-- [ ] OpenFOAM → GROMACS integration
-- [ ] Example workflow (liposome targeting)
+- [ ] Standard workflow: Docking → MD validation
+- [ ] Membrane workflow: MD → Docking → MD validation
+- [ ] Example: HER2-targeted liposome (revised workflow)
 
 ### Phase 2: MVP (Months 7-12)
 
