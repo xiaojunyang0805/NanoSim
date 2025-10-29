@@ -156,7 +156,8 @@ p {
    =========================== */
 .hero {
     /* Layer transparent particle image over gradient using multiple backgrounds */
-    background-image: url('images/hero/particle-flow-background.webp?v=4'), linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Lighter gradient: #7c8ff0 (lighter blue) to #9370db (lighter purple) */
+    background-image: url('images/hero/particle-flow-background.webp?v=5'), linear-gradient(135deg, #8b9dff 0%, #a78bfa 100%);
     background-size: cover, cover;
     background-position: center, center;
     color: white;
