@@ -327,10 +327,11 @@ def generate_particle_flow():
     """Generate particle flow visualization for hero background with transparent center."""
     print("Generating particle flow background...")
 
-    fig, ax = plt.subplots(figsize=(16, 9))
+    fig, ax = plt.subplots(figsize=(16, 9), facecolor="none")
     ax.set_xlim(0, 16)
     ax.set_ylim(0, 9)
     ax.set_facecolor("none")  # Transparent background
+    fig.patch.set_alpha(0.0)  # Make figure background fully transparent
 
     # Generate flowing particles/bubbles on LEFT and RIGHT sides only
     # Avoid center area (x: 5-11) where text will be
@@ -385,11 +386,10 @@ def generate_particle_flow():
     ax.axis("off")
 
     output_path = os.path.join("hero", "particle-flow-background.png")
-    # Save with transparent background
+    # Save with transparent background - don't use bbox_inches='tight' as it adds white background
     plt.savefig(
         output_path,
         dpi=150,
-        bbox_inches="tight",
         facecolor="none",
         edgecolor="none",
         transparent=True,
