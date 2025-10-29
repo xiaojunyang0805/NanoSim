@@ -333,16 +333,19 @@ def generate_particle_flow():
     ax.set_facecolor("none")  # Transparent background
     fig.patch.set_alpha(0.0)  # Make figure background fully transparent
 
-    # Generate flowing particles/bubbles on LEFT and RIGHT sides only
-    # Avoid center area (x: 6-10) where text will be - push particles further to edges
-    np.random.seed(42)
-    n_particles_per_side = 35
+    # Remove all margins and padding
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
 
-    # LEFT side particles (x: 0-3.5) - closer to left edge
+    # Generate flowing particles/bubbles on LEFT and RIGHT sides only
+    # Avoid center area (x: 6-10) where text will be - push particles to actual edges
+    np.random.seed(42)
+    n_particles_per_side = 40
+
+    # LEFT side particles (x: -1 to 3.5) - extend beyond left edge
     for _ in range(n_particles_per_side):
-        x = np.random.uniform(0, 3.5)
+        x = np.random.uniform(-1, 3.5)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.25, 0.9)
+        size = np.random.uniform(0.25, 1.0)
 
         # Mix of blue, purple, pink with higher alpha for visibility
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
@@ -355,11 +358,11 @@ def generate_particle_flow():
         glow = Circle((x, y), size + 0.08, color="white", alpha=0.25, zorder=0)
         ax.add_patch(glow)
 
-    # RIGHT side particles (x: 12.5-16) - closer to right edge
+    # RIGHT side particles (x: 12.5 to 17) - extend beyond right edge
     for _ in range(n_particles_per_side):
-        x = np.random.uniform(12.5, 16)
+        x = np.random.uniform(12.5, 17)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.25, 0.9)
+        size = np.random.uniform(0.25, 1.0)
 
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
         alpha = np.random.uniform(0.3, 0.6)
