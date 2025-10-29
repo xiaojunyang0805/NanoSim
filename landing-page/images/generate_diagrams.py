@@ -163,16 +163,16 @@ def generate_workflow_diagram():
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MACRO,
-        alpha=0.7,
-        edgecolor="black",
-        linewidth=2,
+        alpha=0.3,
+        edgecolor=COLOR_MACRO,
+        linewidth=3,
     )
     ax1.add_patch(macro_box)
     ax1.text(1.5, 1.5, "MACRO\nTransport", ha="center", va="center", fontsize=10, fontweight="bold")
 
     # Arrow to Micro
     arrow1 = FancyArrowPatch(
-        (2.7, 1.5), (3.8, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="black"
+        (2.7, 1.5), (3.8, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="#666666"
     )
     ax1.add_patch(arrow1)
 
@@ -183,8 +183,8 @@ def generate_workflow_diagram():
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MICRO,
-        alpha=0.9,
-        edgecolor="red",
+        alpha=0.3,
+        edgecolor=COLOR_MICRO,
         linewidth=3,
     )
     ax1.add_patch(micro_box)
@@ -194,7 +194,7 @@ def generate_workflow_diagram():
 
     # Arrow to Meso
     arrow2 = FancyArrowPatch(
-        (6.2, 1.5), (7.3, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="black"
+        (6.2, 1.5), (7.3, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="#666666"
     )
     ax1.add_patch(arrow2)
 
@@ -205,9 +205,9 @@ def generate_workflow_diagram():
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MESO,
-        alpha=0.7,
-        edgecolor="black",
-        linewidth=2,
+        alpha=0.3,
+        edgecolor=COLOR_MESO,
+        linewidth=3,
     )
     ax1.add_patch(meso_box)
     ax1.text(
@@ -224,88 +224,90 @@ def generate_workflow_diagram():
     )
 
     # Membrane Targeting Workflow (MD First)
-    ax2.set_xlim(0, 14)
+    ax2.set_xlim(0, 10)
     ax2.set_ylim(0, 3)
     ax2.axis("off")
     ax2.set_title("Membrane Targeting Workflow", fontsize=14, fontweight="bold", pad=20)
 
-    # Macro
+    # Macro - same width layout, 4 boxes total
     macro_box2 = FancyBboxPatch(
         (0.5, 1),
-        2,
+        1.5,
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MACRO,
-        alpha=0.7,
-        edgecolor="black",
-        linewidth=2,
+        alpha=0.3,
+        edgecolor=COLOR_MACRO,
+        linewidth=3,
     )
     ax2.add_patch(macro_box2)
-    ax2.text(1.5, 1.5, "MACRO\nTransport", ha="center", va="center", fontsize=10, fontweight="bold")
+    ax2.text(
+        1.25, 1.5, "MACRO\nTransport", ha="center", va="center", fontsize=10, fontweight="bold"
+    )
 
     arrow1 = FancyArrowPatch(
-        (2.7, 1.5), (3.5, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="black"
+        (2.15, 1.5), (2.85, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="#666666"
     )
     ax2.add_patch(arrow1)
 
     # Meso (highlighted first)
     meso_box2 = FancyBboxPatch(
-        (3.7, 1),
-        2,
+        (3.0, 1),
+        1.5,
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MESO,
-        alpha=0.9,
-        edgecolor="red",
+        alpha=0.3,
+        edgecolor=COLOR_MESO,
         linewidth=3,
     )
     ax2.add_patch(meso_box2)
     ax2.text(
-        4.7, 1.5, "MESO\nMembrane MD", ha="center", va="center", fontsize=10, fontweight="bold"
+        3.75, 1.5, "MESO\nMembrane MD", ha="center", va="center", fontsize=10, fontweight="bold"
     )
 
     arrow2 = FancyArrowPatch(
-        (5.9, 1.5), (6.7, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="black"
+        (4.65, 1.5), (5.35, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="#666666"
     )
     ax2.add_patch(arrow2)
 
     # Micro
     micro_box2 = FancyBboxPatch(
-        (6.9, 1),
-        2,
+        (5.5, 1),
+        1.5,
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MICRO,
-        alpha=0.7,
-        edgecolor="black",
-        linewidth=2,
+        alpha=0.3,
+        edgecolor=COLOR_MICRO,
+        linewidth=3,
     )
     ax2.add_patch(micro_box2)
-    ax2.text(7.9, 1.5, "MICRO\nDocking", ha="center", va="center", fontsize=10, fontweight="bold")
+    ax2.text(6.25, 1.5, "MICRO\nDocking", ha="center", va="center", fontsize=10, fontweight="bold")
 
     arrow3 = FancyArrowPatch(
-        (9.1, 1.5), (9.9, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="black"
+        (7.15, 1.5), (7.85, 1.5), arrowstyle="->", mutation_scale=30, linewidth=3, color="#666666"
     )
     ax2.add_patch(arrow3)
 
     # Meso validation
     meso_box3 = FancyBboxPatch(
-        (10.1, 1),
-        2,
+        (8.0, 1),
+        1.5,
         1,
         boxstyle="round,pad=0.1",
         facecolor=COLOR_MESO,
-        alpha=0.7,
-        edgecolor="black",
-        linewidth=2,
+        alpha=0.3,
+        edgecolor=COLOR_MESO,
+        linewidth=3,
     )
     ax2.add_patch(meso_box3)
     ax2.text(
-        11.1, 1.5, "MESO\nValidation", ha="center", va="center", fontsize=10, fontweight="bold"
+        8.75, 1.5, "MESO\nValidation", ha="center", va="center", fontsize=10, fontweight="bold"
     )
 
     ax2.text(
-        6.5,
+        5,
         0.3,
         "MD explores membrane → Docking targets receptors → MD validates",
         ha="center",
