@@ -40,7 +40,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="background-image: url('images/hero/particle-flow-background.webp'); background-size: cover; background-position: center; background-blend-mode: overlay;">
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Multi-Scale Nanomedicine Simulation Made Simple</h1>
@@ -185,6 +185,51 @@
         </div>
     </section>
 
+    <!-- Multi-Scale Visualization -->
+    <section class="section visualization-section" style="background-color: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Understanding Multi-Scale Simulation</h2>
+            <p class="section-intro">
+                NanoSim bridges three distinct simulation scales to provide comprehensive drug delivery insights
+            </p>
+            <div style="text-align: center; margin: 40px 0;">
+                <picture>
+                    <source srcset="images/scales/three-scale-comparison.webp" type="image/webp">
+                    <img src="images/scales/three-scale-comparison.png"
+                         alt="Comparison of macro, meso, and micro simulation scales in NanoSim"
+                         style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+                         loading="lazy">
+                </picture>
+            </div>
+            <div class="scale-explanation" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div class="scale-detail" style="text-align: center;">
+                    <picture>
+                        <source srcset="images/scales/macro-icon.webp" type="image/webp">
+                        <img src="images/scales/macro-icon.png" alt="Macro scale icon" style="width: 80px; height: 80px; margin-bottom: 15px;">
+                    </picture>
+                    <h4 style="color: #3b82f6; font-size: 1.2rem; margin-bottom: 10px;">Macro Scale (μm-mm)</h4>
+                    <p style="color: #64748b; font-size: 0.95rem;">Blood flow, tissue transport, nanoparticle circulation using CFD (OpenFOAM)</p>
+                </div>
+                <div class="scale-detail" style="text-align: center;">
+                    <picture>
+                        <source srcset="images/scales/meso-icon.webp" type="image/webp">
+                        <img src="images/scales/meso-icon.png" alt="Meso scale icon" style="width: 80px; height: 80px; margin-bottom: 15px;">
+                    </picture>
+                    <h4 style="color: #8b5cf6; font-size: 1.2rem; margin-bottom: 10px;">Meso Scale (nm-μm)</h4>
+                    <p style="color: #64748b; font-size: 0.95rem;">Cell membrane interactions, protein dynamics, lipid bilayers using MD (GROMACS)</p>
+                </div>
+                <div class="scale-detail" style="text-align: center;">
+                    <picture>
+                        <source srcset="images/scales/micro-icon.webp" type="image/webp">
+                        <img src="images/scales/micro-icon.png" alt="Micro scale icon" style="width: 80px; height: 80px; margin-bottom: 15px;">
+                    </picture>
+                    <h4 style="color: #ec4899; font-size: 1.2rem; margin-bottom: 10px;">Micro Scale (Å-nm)</h4>
+                    <p style="color: #64748b; font-size: 0.95rem;">Molecular binding, ligand-receptor docking, binding affinity using AutoDock Vina</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features -->
     <section id="features" class="section features-section">
         <div class="container">
@@ -195,6 +240,15 @@
                     <div class="feature-content">
                         <h3>Bidirectional Scale Bridging</h3>
                         <p>Seamless data conversion in BOTH directions - supports docking-first (standard screening) AND MD-first (membrane targeting) workflows with built-in validation</p>
+                        <div style="margin-top: 20px;">
+                            <picture>
+                                <source srcset="images/features/bidirectional-workflow.webp" type="image/webp">
+                                <img src="images/features/bidirectional-workflow.png"
+                                     alt="Bidirectional workflow comparison: Standard screening vs Membrane targeting"
+                                     style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"
+                                     loading="lazy">
+                            </picture>
+                        </div>
                     </div>
                 </div>
                 <div class="feature-item">
