@@ -60,22 +60,61 @@
                 </div>
             </div>
             <div class="hero-diagram">
-                <div class="scale-box macro">
-                    <h3>Macro Scale</h3>
-                    <p>Blood flow & transport</p>
-                    <span class="scale-range">μm - mm</span>
+                <div class="workflow-tabs">
+                    <button class="tab-button active" data-workflow="standard">Standard Screening</button>
+                    <button class="tab-button" data-workflow="membrane">Membrane Targeting</button>
                 </div>
-                <div class="arrow">→</div>
-                <div class="scale-box meso">
-                    <h3>Meso Scale</h3>
-                    <p>NP-cell interaction</p>
-                    <span class="scale-range">nm - μm</span>
+
+                <!-- Standard Workflow -->
+                <div id="standard-workflow" class="workflow-content active">
+                    <p class="workflow-subtitle">Industry-standard drug discovery</p>
+                    <div class="workflow-boxes">
+                        <div class="scale-box macro">
+                            <h3>Macro</h3>
+                            <p>Transport</p>
+                            <span class="scale-range">μm-mm</span>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="scale-box micro highlight">
+                            <h3>Micro</h3>
+                            <p>Docking First</p>
+                            <span class="scale-range">Å-nm</span>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="scale-box meso">
+                            <h3>Meso</h3>
+                            <p>MD Validation</p>
+                            <span class="scale-range">nm-μm</span>
+                        </div>
+                    </div>
+                    <p class="workflow-note">Fast docking screens thousands → MD validates top candidates</p>
                 </div>
-                <div class="arrow">→</div>
-                <div class="scale-box micro">
-                    <h3>Micro Scale</h3>
-                    <p>Molecular binding</p>
-                    <span class="scale-range">Å - nm</span>
+
+                <!-- Membrane Workflow -->
+                <div id="membrane-workflow" class="workflow-content">
+                    <p class="workflow-subtitle">Nanoparticle delivery & membrane targeting</p>
+                    <div class="workflow-boxes">
+                        <div class="scale-box macro">
+                            <h3>Macro</h3>
+                            <p>Transport</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="scale-box meso highlight">
+                            <h3>Meso</h3>
+                            <p>Membrane MD</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="scale-box micro">
+                            <h3>Micro</h3>
+                            <p>Docking</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="scale-box meso">
+                            <h3>Meso</h3>
+                            <p>Validation</p>
+                        </div>
+                    </div>
+                    <p class="workflow-note">MD explores membrane interactions → Docking targets receptors</p>
                 </div>
             </div>
         </div>
@@ -121,20 +160,21 @@
                 A unified, open-source platform that automates multi-scale simulation workflows
             </p>
             <div class="solution-grid">
+                <div class="solution-card highlight-card">
+                    <div class="solution-icon">🔄</div>
+                    <h3>Adaptive Workflows</h3>
+                    <p>First platform with bidirectional scale bridging - automatically selects optimal workflow based on your use case</p>
+                    <span class="card-badge">Our Competitive Edge</span>
+                </div>
                 <div class="solution-card">
                     <div class="solution-icon">🔗</div>
-                    <h3>Unified Workflow</h3>
+                    <h3>Unified Interface</h3>
                     <p>Single interface to configure and execute simulations across all three scales</p>
                 </div>
                 <div class="solution-card">
                     <div class="solution-icon">🤖</div>
-                    <h3>AI-Powered Assistance</h3>
-                    <p>Intelligent parameter recommendations based on literature and nanoparticle properties</p>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">☁️</div>
-                    <h3>Cloud-Native</h3>
-                    <p>Run simulations in the cloud - no complex local installation required</p>
+                    <h3>Intelligent Routing</h3>
+                    <p>Smart workflow selection based on target type, compound library size, and computational budget</p>
                 </div>
                 <div class="solution-card">
                     <div class="solution-icon">🌍</div>
@@ -153,8 +193,8 @@
                 <div class="feature-item">
                     <div class="feature-number">01</div>
                     <div class="feature-content">
-                        <h3>Automated Scale Bridging</h3>
-                        <p>Seamless data conversion from continuum (CFD) to discrete (MD) to atomic (docking) representations with built-in validation</p>
+                        <h3>Bidirectional Scale Bridging</h3>
+                        <p>Seamless data conversion in BOTH directions - supports docking-first (standard screening) AND MD-first (membrane targeting) workflows with built-in validation</p>
                     </div>
                 </div>
                 <div class="feature-item">
@@ -229,11 +269,12 @@
                         <h3>Phase 1: Proof of Concept</h3>
                         <span class="timeline-date">Current - Month 6</span>
                         <ul>
-                            <li>Docker containerization ✓</li>
-                            <li>Python API wrappers</li>
-                            <li>Basic CLI interface</li>
-                            <li>OpenFOAM → GROMACS integration</li>
-                            <li>Example workflow: liposome targeting</li>
+                            <li>Bidirectional workflow architecture ✓</li>
+                            <li>Intelligent workflow router ✓</li>
+                            <li>Scale bridge implementations ✓</li>
+                            <li>Docker containerization (in progress)</li>
+                            <li>Python API wrappers (in progress)</li>
+                            <li>Example: HER2-targeted liposome</li>
                         </ul>
                     </div>
                 </div>
