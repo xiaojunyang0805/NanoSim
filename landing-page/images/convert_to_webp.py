@@ -30,14 +30,16 @@ def convert_image_to_webp(input_path, output_path=None, quality=85):
         # Open image
         img = Image.open(input_path)
 
-        # Convert RGBA to RGB if necessary
-        if img.mode in ("RGBA", "LA"):
-            background = Image.new("RGB", img.size, (255, 255, 255))
-            background.paste(img, mask=img.split()[-1])
-            img = background
+        # Keep RGBA mode for transparency support in WebP
+        # WebP supports alpha channel, so don't convert to RGB
 
-        # Save as WebP
-        img.save(output_path, "webp", quality=quality, method=6)
+        # Save as WebP with lossless for transparency preservation
+        if img.mode in ("RGBA", "LA"):
+            # Use lossless mode for images with transparency
+            img.save(output_path, "webp", lossless=True)
+        else:
+            # Use quality mode for opaque images
+            img.save(output_path, "webp", quality=quality, method=6)
 
         # Get file sizes
         input_size = os.path.getsize(input_path) / 1024  # KB
