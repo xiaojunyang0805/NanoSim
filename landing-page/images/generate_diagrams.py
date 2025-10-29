@@ -342,43 +342,43 @@ def generate_particle_flow():
     for _ in range(n_particles_per_side):
         x = np.random.uniform(0, 4)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.15, 0.6)
+        size = np.random.uniform(0.2, 0.8)
 
-        # Mix of blue, purple, pink with low alpha for subtlety
+        # Mix of blue, purple, pink with higher alpha for visibility
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
-        alpha = np.random.uniform(0.15, 0.35)
+        alpha = np.random.uniform(0.3, 0.6)
 
         circle = Circle((x, y), size, color=color_choice, alpha=alpha, zorder=1)
         ax.add_patch(circle)
 
-        # Add subtle glow/outline for bubble effect
-        glow = Circle((x, y), size + 0.05, color="white", alpha=0.1, zorder=0)
+        # Add white glow/outline for bubble effect
+        glow = Circle((x, y), size + 0.08, color="white", alpha=0.25, zorder=0)
         ax.add_patch(glow)
 
     # RIGHT side particles (x: 12-16)
     for _ in range(n_particles_per_side):
         x = np.random.uniform(12, 16)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.15, 0.6)
+        size = np.random.uniform(0.2, 0.8)
 
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
-        alpha = np.random.uniform(0.15, 0.35)
+        alpha = np.random.uniform(0.3, 0.6)
 
         circle = Circle((x, y), size, color=color_choice, alpha=alpha, zorder=1)
         ax.add_patch(circle)
 
-        # Add glow
-        glow = Circle((x, y), size + 0.05, color="white", alpha=0.1, zorder=0)
+        # Add white glow for bubble effect
+        glow = Circle((x, y), size + 0.08, color="white", alpha=0.25, zorder=0)
         ax.add_patch(glow)
 
     # Add a few very subtle particles in the center for transition
     for _ in range(10):
         x = np.random.uniform(4.5, 11.5)
         y = np.random.uniform(0, 9)
-        size = np.random.uniform(0.1, 0.3)
+        size = np.random.uniform(0.15, 0.35)
 
         color_choice = np.random.choice([COLOR_MACRO, COLOR_MESO, COLOR_MICRO])
-        alpha = np.random.uniform(0.05, 0.15)  # Very subtle
+        alpha = np.random.uniform(0.1, 0.25)  # Slightly more visible
 
         circle = Circle((x, y), size, color=color_choice, alpha=alpha)
         ax.add_patch(circle)
