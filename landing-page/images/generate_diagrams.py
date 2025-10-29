@@ -328,7 +328,19 @@ def generate_particle_flow():
     fig, ax = plt.subplots(figsize=(16, 9))
     ax.set_xlim(0, 16)
     ax.set_ylim(0, 9)
-    ax.set_facecolor("#f8fafc")
+
+    # Create blue-purple gradient background (matching hero section)
+    from matplotlib.colors import LinearSegmentedColormap
+
+    # Define gradient from blue-purple (#667eea) to purple (#764ba2)
+    ax.imshow(
+        [[0, 1]],
+        extent=[0, 16, 0, 9],
+        aspect="auto",
+        cmap=LinearSegmentedColormap.from_list("hero", ["#667eea", "#764ba2"]),
+        alpha=1.0,
+        zorder=0,
+    )
 
     # Generate flowing particles with gradient colors
     np.random.seed(42)
@@ -363,7 +375,7 @@ def generate_particle_flow():
     ax.axis("off")
 
     output_path = os.path.join("hero", "particle-flow-background.png")
-    plt.savefig(output_path, dpi=150, bbox_inches="tight", facecolor="#f8fafc", edgecolor="none")
+    plt.savefig(output_path, dpi=150, bbox_inches="tight", facecolor="#667eea", edgecolor="none")
     plt.close()
 
     print(f"[OK] Saved: {output_path}")
