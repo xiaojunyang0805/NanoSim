@@ -1,3 +1,18 @@
+/*
+ * NanoSim Landing Page Styles
+ *
+ * CACHE BUSTING STRATEGY:
+ * - CSS Version: v=8 (defined in index.html <link> tag)
+ * - Hero Background Version: v=13 (see .hero section)
+ * - Logo Version: v=8 (see navigation section in index.html)
+ *
+ * When updating assets, increment the version number in BOTH:
+ * 1. The HTML file (styles.css?v=X, image.png?v=X)
+ * 2. This CSS file (for background images)
+ *
+ * This ensures browsers always load the latest version.
+ */
+
 /* ===========================
    Reset & Base Styles
    =========================== */
