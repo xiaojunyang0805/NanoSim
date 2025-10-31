@@ -123,9 +123,10 @@ p {
 }
 
 .logo-img {
-    width: 48px;
-    height: 48px;
+    width: 48px !important;
+    height: 48px !important;
     object-fit: contain;
+    display: block;
 }
 
 .nav-links {
